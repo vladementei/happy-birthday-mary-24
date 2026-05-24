@@ -24,6 +24,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  height: 100%;
 }
 
 body {
@@ -31,8 +32,9 @@ body {
   color: var(--white);
   background: linear-gradient(145deg, var(--coral) 0%, var(--peach) 45%, var(--lavender) 100%);
   background-attachment: fixed;
+  height: 100dvh;
   min-height: 100dvh;
-  overflow-x: hidden;
+  overflow: hidden;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
@@ -175,8 +177,10 @@ body {
   z-index: 1;
   max-width: 430px;
   margin: 0 auto;
+  height: 100dvh;
   min-height: 100dvh;
   width: 100%;
+  overflow: hidden;
 }
 
 /* ===== Screens ===== */
@@ -184,15 +188,17 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  height: 100%;
+  max-height: 100dvh;
+  overflow-x: hidden;
   overflow-y: auto;
+  overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
   padding:
-    calc(24px + var(--safe-top))
+    calc(20px + var(--safe-top))
     calc(20px + var(--safe-right))
-    calc(24px + var(--safe-bottom))
+    calc(20px + var(--safe-bottom))
     calc(20px + var(--safe-left));
   opacity: 0;
   visibility: hidden;
@@ -214,6 +220,8 @@ body {
 
 .screen__inner {
   width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
   animation: fade-in 0.6s ease 0.15s both;
 }
 
@@ -222,6 +230,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+#screen-hero,
+#screen-categories {
+  padding-top: calc(60px + var(--safe-top));
+}
+
+#screen-hero .screen__inner {
+  padding-bottom: 12px;
+}
+
+#screen-categories .screen__inner {
+  padding-bottom: 16px;
 }
 
 @keyframes fade-in {
@@ -550,5 +572,54 @@ body.is-transitioning .screen--active {
   .card {
     min-height: 92px;
     padding: 20px 22px;
+  }
+}
+
+/* ===== Short screens (small iPhones) ===== */
+@media (max-height: 700px) {
+  .screen {
+    padding-bottom: calc(16px + var(--safe-bottom));
+  }
+
+  #screen-hero,
+  #screen-categories {
+    padding-top: calc(48px + var(--safe-top));
+  }
+
+  .eyebrow {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .title--hero {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+    margin-bottom: 14px;
+  }
+
+  .text-block {
+    margin-bottom: 18px;
+  }
+
+  .text-block p {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    min-height: 48px;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-height: 580px) {
+  .title--hero {
+    font-size: 1.625rem;
+    margin-bottom: 10px;
+  }
+
+  .text-block p {
+    font-size: 0.875rem;
+    margin-bottom: 8px;
   }
 }
