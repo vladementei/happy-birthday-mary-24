@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ff6b8a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>С Днём рождения, Маша! 🎂</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="bg-bubbles" aria-hidden="true">
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+  </div>
+
+  <div id="confetti" class="confetti" aria-hidden="true"></div>
+
+  <audio id="bg-music" loop playsinline preload="auto">
+    <source src="assets/audio.mp3" type="audio/mpeg">
+  </audio>
+
+  <button type="button" class="music-toggle" id="music-toggle" aria-label="Музыка" aria-pressed="false" title="Музыка">
+    <svg class="music-toggle__icon music-toggle__icon--off" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+    <svg class="music-toggle__icon music-toggle__icon--on" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+    </svg>
+  </button>
+
+  <main class="app">
+    <!-- Экран 1: Поздравление -->
+    <section id="screen-hero" class="screen screen--active" data-screen="hero">
+      <div class="screen__inner">
+        <p class="eyebrow">24 года 🎉🥳🎊🎈🍰</p>
+        <h1 class="title title--hero">
+          <span class="title__line">С Днём</span>
+          <span class="title__line title__line--accent">Рождения,</span>
+          <span class="title__line">Маруся!</span>
+        </h1>
+        <div class="text-block">
+          <p>Маша, любимая и родная, с твоим самым главным днём! Сегодня тебе 24 и для меня это не просто очередная цифра, а ещё один год рядом с самым главным человеком в моей жизни 🥰</p>
+          <p>Ты умеешь смеяться так, что становится легче всем вокруг, и заботиться так, что хочется обнимать мир, любить так, как представляешь себе безусловную любовь Бога, спасибо, что ты есть!</p>
+          <p>Пусть этот год принесёт тебе то, о чём ты мечтаешь и даже больше, не бойся перемен, всё в твоей жизни будет замечательно, я рядом и очень тебя люблю ❤️</p>
+        </div>
+        <button type="button" class="btn btn--primary btn--hero" id="btn-hero-next">
+          Дальше
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Экран 2: Переход к подарку -->
+    <section id="screen-bridge" class="screen" data-screen="bridge">
+      <div class="screen__inner screen__inner--center">
+        <div class="gift-icon" aria-hidden="true">🎁</div>
+        <h2 class="title title--section">А теперь — твой подарок</h2>
+        <p class="lead">Я приготовил для тебя подарок из трёх частей!!! (как ты любишь) <br/> Каждая про что-то своё, выбирай категорию и получай подарочек</p>
+        <button type="button" class="btn btn--primary btn--pulse" id="btn-open-gifts">
+          Открыть подарки
+          <span class="btn__arrow" aria-hidden="true">✨</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Экран 3: Выбор категории -->
+    <section id="screen-categories" class="screen" data-screen="categories">
+      <div class="screen__inner">
+        <h2 class="title title--section">С чего начнём?)</h2>
+        <p class="subtitle" style="font-size: 1.2rem">Нажми на карточку — и я вручу подарок из этой категории</p>
+
+        <div class="cards">
+          <button type="button" class="card" data-category="health">
+            <span class="card__emoji" aria-hidden="true">🌿</span>
+            <span class="card__title">Здоровье и комфорт</span>
+            <span class="card__desc">Забота о тебе и о твоём отдыхе</span>
+          </button>
+
+          <button type="button" class="card" data-category="beauty">
+            <span class="card__emoji" aria-hidden="true">✨</span>
+            <span class="card__title">Красота</span>
+            <span class="card__desc">Чтобы сиять и чувствовать себя ещё прекраснее</span>
+          </button>
+
+          <button type="button" class="card" data-category="memory">
+            <span class="card__emoji" aria-hidden="true">💝</span>
+            <span class="card__title">Память и эмоции</span>
+            <span class="card__desc">Моменты, которые захочется сохранить</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Экран 4: Раскрытие категории -->
+    <section id="screen-reveal" class="screen" data-screen="reveal">
+      <div class="screen__inner screen__inner--center">
+        <div class="reveal-badge" id="reveal-emoji" aria-hidden="true">✨</div>
+        <h2 class="title title--section" id="reveal-title">Категория</h2>
+        <div class="lead reveal-text" id="reveal-text"></div>
+        <p class="reveal-callout">Закрой глаза — сейчас вручу <span id="reveal-callout-emoji" aria-hidden="true">✨</span></p>
+        <button type="button" class="btn btn--secondary" id="btn-back-categories">
+          Выбрать другую категорию
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Тексты раскрытия категорий (кириллица только в HTML) -->
+  <div id="reveal-data" hidden>
+    <div id="reveal-beauty" data-emoji="✨" data-title="Красота">
+      <p>Здесь украшение от того бренда, о котором ты так давно мечтала!)</p>
+      <p>Вчера я оставил тебе лёгкий намёк. Вспомни его и подумай: что же это может быть?)</p>
+    </div>
+    <div id="reveal-health" data-emoji="🌿" data-title="Здоровье и комфорт">
+      <p>Здоровый сон — это база успешной жизни, я верю в это всей душой!</p>
+      <p>Хочу, чтобы твой сон был самым комфортным и чтобы каждое утро ты просыпалась счастливой. Угадай, что я для этого приготовил?)</p>
+    </div>
+    <div id="reveal-memory" data-emoji="💝" data-title="Память и эмоции">
+      <p>Мы с тобой любим фотографировать чтобы запоминать наши счастливые моменты. В каждом кадре столько тепла🥰</p>
+      <p>У нас была мечта — красиво оформить их в альбом на память. Чтобы наша память была не только на экране, а настоящей, физической. Угадай, с чего мы начнём?)</p>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
